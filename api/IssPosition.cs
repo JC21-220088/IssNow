@@ -24,7 +24,9 @@ namespace IssNow.api
             {
                 if (double.TryParse(Latitude, out double lat))
                 {
-                    return Math.Abs(lat);
+                    
+                    var num2 = Math.Floor(lat * 100) / 100;
+                    return num2;
                 }
                 return 0; // デフォルト値（必要に応じて調整）
             }
@@ -37,7 +39,8 @@ namespace IssNow.api
             {
                 if (double.TryParse(Longitude, out double lon))
                 {
-                    return Math.Abs(lon);
+                    var num1 = Math.Floor(lon * 100) / 100;
+                    return num1;
                 }
                 return 0; // デフォルト値（必要に応じて調整）
             }
@@ -50,7 +53,7 @@ namespace IssNow.api
             {
                 if (double.TryParse(Latitude, out double lat))
                 {
-                    return lat >= 0 ? "S" : "N";
+                    return lat >= 0 ? "N" : "S";
                 }
                 return "Invalid"; // エラー時の値
             }
@@ -63,7 +66,7 @@ namespace IssNow.api
             {
                 if (double.TryParse(Longitude, out double lon))
                 {
-                    return lon >= 0 ? "E" : "W";
+                    return lon >= -180 ? "E" : "W";
                 }
                 return "Invalid"; // エラー時の値
             }
